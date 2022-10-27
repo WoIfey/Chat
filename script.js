@@ -32,7 +32,8 @@ const chatRef = ref(db, "/chat");
 onChildAdded(chatRef, function (data) {
   // Create message element and append to list element
   const message = document.createElement("li");
-  message.innerText = data.val();
+  message.innerText =
+    new Date(data.key).toLocaleString("fi-FI") + ": " + data.val();
   list.appendChild(message);
 });
 
@@ -43,7 +44,7 @@ const list = document.querySelector("ul");
 input.addEventListener("keypress", function (event) {
   if (event.key == "Enter") {
     // create "unique" id for message
-    const messageId = Date.now();
+    const messageId = new Date().toUTCString();
 
     // Send to database
     set(ref(db, "chat/" + messageId), input.value);
