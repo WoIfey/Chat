@@ -73,7 +73,7 @@ function initDatabase() {
     const message = document.createElement("li");
 
     message.innerText =
-      new Date(data.key).toLocaleDateString("fi-FI") + ": " + data.val();
+      new Date(data.key).toLocaleString("fi-FI") + ": " + data.val();
 
     list.appendChild(message);
   });
