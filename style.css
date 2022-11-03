@@ -34,17 +34,26 @@ li {
   border-bottom: 1px solid rgb(109, 109, 109);
 }
 
-input:focus {
+.text:focus {
   outline: none;
 }
 
-input::placeholder {
+.text::placeholder {
   color: black;
 }
 
-input {
+.text {
   padding: 12px;
   border-radius: 8px;
   background: #cf8524;
   border: none;
+  margin-bottom: 10px;
+}
+
+.modal-title {
+  color: black;
+}
+
+h1 {
+  color: white;
 }
