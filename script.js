@@ -29,6 +29,17 @@ const app = initializeApp(firebaseConfig);
 // Auth
 // =========================================================
 
+var scrolled = false;
+function updateScroll() {
+  if (!scrolled) {
+    var element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+  }
+}
+
+//once a second
+setInterval(updateScroll, 5000);
+
 // Set variable with Bootstrap modal
 const loginModal = new bootstrap.Modal("#login-modal");
 loginModal.show();
@@ -38,6 +49,7 @@ document.querySelector("#login-button").addEventListener("click", function () {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
   const auth = getAuth();
+  const errorMessage = document.querySelector("#error");
 
   // Sign in with Firebase
   signInWithEmailAndPassword(auth, email, password)
@@ -54,6 +66,7 @@ document.querySelector("#login-button").addEventListener("click", function () {
     })
     .catch((error) => {
       console.log(error);
+      errorMessage.innerText = error;
     });
 });
 
