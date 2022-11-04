@@ -38,7 +38,7 @@ function updateScroll() {
 }
 
 //once a second
-setInterval(updateScroll, 5000);
+setInterval(updateScroll, 3000);
 
 // Set variable with Bootstrap modal
 const loginModal = new bootstrap.Modal("#login-modal");
