@@ -86,7 +86,7 @@ function initDatabase() {
     const message = document.createElement("li");
 
     message.innerText =
-      new Date(data.key).toLocaleString("en-GB") + ": " + data.val();
+      new Date(data.key).toLocaleString("en-GB") + ": " + "\n" + data.val();
 
     list.appendChild(message);
   });
