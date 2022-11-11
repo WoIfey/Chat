@@ -29,17 +29,6 @@ const app = initializeApp(firebaseConfig);
 // Auth
 // =========================================================
 
-var scrolled = false;
-function updateScroll() {
-  if (!scrolled) {
-    var element = document.getElementById("messages");
-    element.scrollTop = element.scrollHeight;
-  }
-}
-
-//once a second
-setInterval(updateScroll, 3000);
-
 // Set variable with Bootstrap modal
 const loginModal = new bootstrap.Modal("#login-modal");
 loginModal.show();
@@ -65,7 +54,6 @@ document.querySelector("#login-button").addEventListener("click", function () {
       initDatabase();
     })
     .catch((error) => {
-      console.log(error);
       errorMessage.innerText = error;
     });
 });
@@ -84,9 +72,15 @@ function initDatabase() {
     // create element and append to list element
     const list = document.querySelector("ul");
     const message = document.createElement("li");
+    const emailId = document.querySelector("#email").value;
+    const firstWord = emailId.substring(0, emailId.indexOf("@"));
 
     message.innerText =
-      new Date(data.key).toLocaleString("en-GB") + ": " + "\n" + data.val();
+      firstWord +
+      " " +
+      new Date(data.key).toLocaleString("en-GB") +
+      "\n" +
+      data.val();
 
     list.appendChild(message);
   });
@@ -121,3 +115,15 @@ input.addEventListener("keypress", function (event) {
     input.value = "";
   }
 });
+
+// Auto Scroll
+// =========================================================
+var scrolled = false;
+function updateScroll() {
+  if (!scrolled) {
+    var element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+  }
+}
+
+setInterval(updateScroll, 2000);
